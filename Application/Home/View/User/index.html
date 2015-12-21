@@ -1,0 +1,182 @@
+<extend name="Base/common"/>
+<block name="style">
+    <link href="__CSS__/User/index.css" rel="stylesheet">
+</block>
+
+<block name="body">
+    <div id="top">
+        <div class="main">
+            <div class="left">
+                <p class="logo">拍客地区</p>
+                <p class="logo2">打开相机,将视线定格在这一美的瞬间。。</p>
+            </div>
+            <div class="right">
+                <label>Photo World</label>
+                <a href="javascript:;" class="show-login">登&nbsp;录</a>
+                <a href="javascript:;" class="show-reg">注&nbsp;册</a>
+            </div>
+        </div>
+    </div>
+    <div id="bottom">
+        <div class="user">
+            <table>
+                <tr>
+                    <td><div class="circle_bg"><img src="__AVATAR__/user.jpg"></div></td>
+                    <td><div class="circle_bg"><img src="__AVATAR__/user.jpg"></div></td>
+                    <td><div class="circle_bg"><img src="__AVATAR__/user.jpg"></div></td>
+                </tr>
+                <tr>
+                    <td><div class="circle_bg"><img src="__AVATAR__/user.jpg"></div></td>
+                    <td><div class="circle_bg"><img src="__AVATAR__/user.jpg"></div></td>
+                    <td><div class="circle_bg"><img src="__AVATAR__/user.jpg"></div></td>
+                </tr>
+                <tr>
+                    <td><div class="circle_bg"><img src="__AVATAR__/user.jpg"></div></td>
+                    <td><div class="circle_bg"><img src="__AVATAR__/user.jpg"></div></td>
+                    <td><div class="circle_bg"><img src="__AVATAR__/user.jpg"></div></td>
+                </tr>
+                <tr>
+                    <td><div class="circle_bg"><img src="__AVATAR__/user.jpg"></div></td>
+                    <td><div class="circle_bg"><img src="__AVATAR__/user.jpg"></div></td>
+                    <td><div class="circle_bg"><img src="__AVATAR__/user.jpg"></div></td>
+                </tr>
+            </table>
+        </div>
+        <div class="dyn">
+            <div class="self">
+                <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                <div class="right">
+                    <p class="user_name">用户名</p>
+                    <p class="new">最近上传了12张照片到相册 -- 相册名称</p>
+                </div>
+            </div>
+            <hr width="420" size="1" noshade>   
+            <div class="user_dyn">
+                <ul>
+                    <li><a href="###"> <label class="user_name">用户名</label>：上传了12张照片到相册 -- 相册名称</a></li>
+                    <li><a href="###"><label class="user_name">用户名</label>：上传了12张照片到相册 -- 相册名称</a></li>
+                    <li><a href="###"><label class="user_name">用户名</label>：上传了12张照片到相册 -- 相册名称</a></li>
+                    <li><a href="###"><label class="user_name">用户名</label>：上传了12张照片到相册 -- 相册名称</a></li>
+                    <li><a href="###"><label class="user_name">用户名</label>：上传了12张照片到相册 -- 相册名称</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="dialog" id="form-login" style="display:none">
+        <form class="login" action="{:U('login')}" method="post">
+            <div class="form-item form-top">
+                <i class="fa fa-close fa-lg" style="float:right"></i>
+                <h3>登录</h3>
+            </div>
+            <div class="form-item">
+                <input type="text" class="username" placeholder="请输入用户名"  ajaxurl="/member/checkUserNameUnique.html" datatype="*1-16" value="" name="username">
+            </div>
+            <div class="form-item">
+                <input type="password" class="password" placeholder="请输入密码"  errormsg="密码为6-20位" nullmsg="请填写密码" datatype="*6-20" name="password">
+            </div>
+            <div class="form-item verify-container">
+                <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
+                <input type="text" class="verify" placeholder="验证码" name="verify">
+            </div>
+   <!--          <div class="form-item">
+                <input type="checkbox" class="checkbox"> <label for="checkbox"><span>自动登陆</span></label>
+                <span class="forget"><a href="###" class="default">忘记密码?</a></span>
+            </div> -->
+            <div class="check-tip">
+                提示：<span>请输入登录信息</span>
+            </div>
+            <div class="form-item">
+                <button type="submit" class="btn">登&nbsp;陆</button>
+            </div>
+        </form>
+    </div>
+    <div class="dialog" id="form-reg" style="display:none">
+        <form class="reg" action="{:U('register')}" method="post">
+            <div class="form-item form-top">
+                <i class="fa fa-close fa-lg" style="float:right"></i>
+                <h3>注册</h3>
+            </div>
+            <div class="form-item">
+                <input type="text" class="username" placeholder="请输入用户名"  ajaxurl="/member/checkUserNameUnique.html" datatype="*1-16" value="" name="username">
+            </div>
+            <div class="form-item">
+                <input type="password" class="password" placeholder="请输入密码"  datatype="*6-20" name="password">
+            </div>
+            <div class="form-item">
+                <input type="password" id="inputPassword" class="repassword" placeholder="请再次输入密码" datatype="*" name="repassword">
+            </div>
+            <div class="form-item">
+                <input type="text" id="inputEmail" class="email" placeholder="请输入电子邮件" name="email">
+            </div>
+            <div class="form-item verify-container">
+                <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
+                <input type="text" class="verify" placeholder="验证码" name="verify">
+            </div>
+            <div class="check-tip">
+                提示：<span>请输入注册信息</span>
+            </div>
+            <div class="form-item">
+                <button type="submit" class="btn">注&nbsp;册</button>
+            </div>
+        </form>
+    </div>
+    <div class="screen" style="display:none"></div>
+</block>
+<block name="side"> </block>
+<block name="script">
+    <script type="text/javascript" src="__STATIC__/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript">
+
+    	$("form").submit(function(){
+    		var self = $(this);
+    		$.post(self.attr("action"), self.serialize(), success, "json");
+    		return false;
+    		function success(data){
+    			if(data.status){
+                    self.find(".check-tip").find('span').css('color','green').text(data.info);
+                    setTimeout(function(){
+                        window.location.href = data.url;
+                    },3000);
+    			} else {
+    				self.find(".check-tip").find('span').css('color','red').text(data.info);
+    				//刷新验证码
+    				$(".reloadverify").click();
+    			}
+    		}
+    	});
+
+		$(function(){
+			var verifyimg = $(".verifyimg").attr("src");
+            $(".reloadverify").click(function(){
+                if( verifyimg.indexOf('?')>0){
+                    $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
+                }else{
+                    $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+                }
+            });
+		});
+	</script>
+    <script>
+        $(function(){
+            $('.header').hide();
+            $("#main-container").css("min-height", $(window).height() - $('.footer').height()-20);
+            // $('.footer').hide();
+            $('.show-login').click(function(){
+                $('#form-login').find('input').val('');
+                $('#form-login').find(".check-tip").find('span').css('color','green').text('请输入登录信息');
+                $('#form-login').fadeIn();
+                $('.screen').show();
+            })
+            $('.show-reg').click(function(){
+                $('#form-reg').find('input').val('');
+                $('#form-reg').find(".check-tip").find('span').css('color','green').text('请输入注册信息');
+                $('#form-reg').fadeIn();
+                $('.screen').show();
+            })
+            $('.fa-close').click(function(){
+                $('.dialog').fadeOut();
+                $('.screen').hide();
+            })
+        })
+    </script>
+</block>

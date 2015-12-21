@@ -1,0 +1,254 @@
+#main{
+	width: 960px;
+	margin: 0 auto;
+	font-family: '微软雅黑';
+}
+#top .tag{
+	height: 50px;
+	margin: 10px 0;
+}
+#top .tag .tag_head img{
+	float: left;
+	width: 30px;
+	height: 30px;
+	margin: 15px 15px 20px 0;
+}
+#top .tag a{
+	float: left;
+	line-height: 60px;
+	color: #666;
+	text-decoration: none;
+	font-size: 15px;
+	padding: 0 4px;
+} 
+#top .tag a.current,
+#top .tag a.a:hover{
+	color: #E54839;
+}
+
+#top .banner{
+	width: 960px;
+	height: 280px;
+	background: #252525;
+}
+#top .banner .tag_img{
+	position: relative;
+	top: 0;
+	left: 0;
+	float: left;
+	margin: 16px 0 16px 1px;
+}
+#top .banner .tag_img img{
+	width: 230px;
+	height: 230px;
+	padding:0 3px;
+	z-index: 1;
+}
+#top .banner .dot{
+	clear: both;
+	position: relative;
+	top: -30px;
+	height: 38px;
+	width: 960px;
+	/*background: #000;*/
+	background-color:rgba(0,0,0,0.5); 
+	text-align: center;
+	z-index: 3;
+}
+#top .banner .dot span{
+	font-size: 24px;
+	color: #fff;
+	opacity: 0.8;
+	line-height: 45px;
+	margin: 0 7px;
+	cursor: pointer;
+	z-index: 4;
+}
+#top .banner .dot span:hover{
+	color: #E54839;
+}
+#top .banner strong{
+	position: relative;
+	top: -55px;
+	left: 10px;
+	color: white;
+	z-index: 4;
+}
+
+#center{
+	width: 960px;
+	margin: 25px 0 20px 0;
+	background: #eee;
+	overflow: hidden;
+}
+#center .center_top{
+	margin: 5px 20px 0 20px;
+	height: 325px;
+	border-bottom: 1px dashed #ccc;
+}
+#center p.recom{
+	padding: 15px 0;
+	font-size: 15px;
+	font-weight: bold;
+	color: #666;
+}
+#center .center_top .album_recom{
+	float: left;
+	margin-left: 19px;
+}
+#center .center_top .user .user_img{
+	float: left;
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
+}
+#center .center_top .user .user_img img{
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
+}
+#center .center_top .user .info{
+	height: 40px;
+	float: left;
+	font-size: 14px;
+	margin-left: 7px;
+	width: 168px;
+	line-height: 40px;
+}
+#center .center_top .user .info p,
+#center .center_top .user .info a{
+	color: #0D6376;
+	font-size: 13px;
+}
+#center .center_top .album{
+	width: 205px;
+	height: 205px;
+}
+#center .center_top .album img{
+	width: 205px;
+	height: 205px;
+	border: 1px solid #aaa;
+}
+#center .center_bottom{
+	overflow: hidden;
+	margin: 0 20px 20px 20px;
+}
+
+#center .center_bottom .user_recom{
+	float: left;
+	width: 91px;
+	margin: 0 20px;
+}
+#center .center_bottom .user_recom .user_img{
+	float: left;
+	width: 90px;
+	height: 90px;
+	margin-bottom: 7px;
+}
+#center .center_bottom .user_recom .user_img img{
+	width: 90px;
+	height: 90px;
+}
+#center .center_bottom .user_recom .info{
+	text-align: center;
+}
+#center .center_bottom .user_recom .info p.user_name a{
+	color: #0D6376;
+	font-size: 15px;
+	line-height: 23px;
+}
+/*关注*/
+.ui-button-text-only .ui-button-text{
+	font-size: 10px;
+	padding: 3px 6px;
+	margin-top: 0;
+	font-family: '微软雅黑';
+}
+.ui-state-default{
+	background: #fff;
+	border:1px solid #aaa;
+}
+
+
+#bottom{
+	/*background: #eee;*/
+	/*overflow: hidden;*/
+}
+#bottom p.hot_photo{
+	margin: 20px 20px 10px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #666;
+}
+#bottom .waterfull ul li{
+	float: left;
+	display: inline-block;
+	background: #fff;
+	border:1px solid #aaa;
+	border-radius: 5px;
+	position: relative;
+	padding: 10px;
+	margin: 6px;
+}
+#bottom .waterfull ul li a img{
+	width: 285px;
+	display: block;
+	min-height: 250px;
+	margin-bottom: 15px;
+}
+#bottom .waterfull ul li .info{
+	width: 285px;
+	border-top: 1px dashed #ccc;
+}
+#bottom .waterfull ul li .info .left{
+	float: left;
+	width: 35px;
+	height: 35px;
+	margin: 10px 10px 0 5px;
+}
+#bottom .waterfull ul li .info .left img{
+	width: 35px;
+	height: 35px;
+}
+#bottom .waterfull ul li .info .right{
+	float: left;
+	font-size: 14px;
+	line-height: 20px;
+	margin-top: 7px;
+	color: #555;
+}
+#bottom .waterfull ul li .info .right .color{
+	color: #1B6C7E;
+	font-weight: bold;
+}
+
+
+.swiper-container {
+    width: 940px;
+    background: #000;
+    height: 220px;
+    padding: 15px 10px;
+    margin: 20px auto;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.swiper-slide img{
+	width: 100%;
+	height: 100%;
+}

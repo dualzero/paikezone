@@ -1,0 +1,45 @@
+.main{
+    width: 960px;
+    margin: 20px auto 0;
+    text-align: center;
+}
+.edit{
+    display: inline-block;
+    max-width: 450px;
+    height: 450px;
+    margin: 0 auto;
+    text-align: center;
+}
+.edit img{
+    max-width: 450px;
+    max-height: 450px;
+    display: block;
+    margin: 0 auto;
+}
+.op{
+    width: 400px;
+    margin: 0 auto;
+}
+.op p{
+    line-height: 2.5;
+    color: #555;
+    font-size: 13px;
+}
+.fa{
+    display: inline-block;
+    padding: 6px 8px;
+    background: #E54839;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.op .submit{
+    color: #fff;
+    font-size: 14px;
+    padding: 7px 20px;
+    cursor: pointer;
+    border-radius: 7px;
+    margin-left: 20px;
+    background: #1EA076;
+}

@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor图片对话框</title>
+    <script type="text/javascript" src="../internal.js"></script>
+
+    <!-- jquery -->
+    <script type="text/javascript" src="../../third-party/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../../../jquery-2.0.3.min.js"></script>
+
+    <!-- webuploader -->
+    <script src="../../third-party/webuploader/webuploader.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../third-party/webuploader/webuploader.css">
+
+    <!-- 引入css图样库 -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- image dialog -->
+    <link rel="stylesheet" href="image.css" type="text/css" />
+    <style>
+        .upload-desc{
+            display: inline-block;
+            text-align: center;
+            width: 50px;
+            font-size: 14px;
+        }
+        .select-album{
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: inline-block;
+            width: 200px;
+            height: 30px;
+            border: 1px solid #ccc;
+            line-height: 30px;
+            padding: 2px 5px;
+            background: #fff;
+            cursor: pointer;
+        }
+        .select-album img{
+            float: left;
+            width: 30px;
+            height: 30px;
+        }
+        .upload-album span,.select-album li span{
+            display: inline-block;
+            line-height: 30px;
+            margin-left: 5px;
+        }
+        .album-list{
+            position: absolute;
+            z-index: 9999;
+            display: none;
+            width: 200px;
+            padding: 2px 5px;
+            margin-left: -6px;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+        .select-album ul{
+            /*position: absolute;*/
+            margin-top: 2px;
+            max-height: 180px;
+            overflow-y: overlay;
+            overflow-x: hidden;
+            margin-left: -5px;   
+            width: 100%;      
+            color: #444;  
+        }
+        /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+        .select-album ul::-webkit-scrollbar
+        {
+            width: 10px;
+            height: 10px;
+            background-color: #eee;
+        }
+
+        /*定义滚动条轨道 内阴影+圆角*/
+        .select-album ul::-webkit-scrollbar-track
+        {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #eee;
+        }
+
+        /*定义滑块 内阴影+圆角*/
+        .select-album ul::-webkit-scrollbar-thumb
+        {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #aaa;
+        }
+        .select-album ul li{
+            display: block;
+            border-bottom: 1px dashed #ccc;
+            width: 200px;
+            padding: 2px 5px;
+            line-height: 30px;
+            cursor: pointer;
+            background: #fff;
+        }
+        .select-album ul li:hover{
+            background: #eef;
+        }
+        /*创建相册*/
+        .create-album{
+            display: block;
+            width: 200px;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-weight: 600;
+        }
+        .create-album:hover{
+            text-decoration: underline;
+            color: blue;
+        }
+        .screen{
+            width: 168px;
+            height: 45px;
+            background: #000;
+            position: absolute;
+            top: 214px;
+            left: 242px;
+            opacity: 0;
+            z-index: 888;
+        }
+    </style>
+    <script>
+    $(function(){
+        //判断点击的是不是某个元素
+        $(document).bind('click',function(e){
+            var e = e || window.event; //浏览器兼容性
+            var elem = e.target || e.srcElement;
+            while (elem) { //循环判断至跟节点，防止点击的是div子元素
+                if (elem.id && elem.id == 'select-album') {
+                    return;
+                }
+                elem = elem.parentNode;
+            }
+            //点击的不是div或其子元素
+            $('.album-list').slideUp();
+        });
+        $('.select-album').click(function(){
+            $('.album-list').slideToggle();
+        });
+        //选项的点击事件
+        $(document).on('click','.album-list li',function(){
+            var src = $(this).find('img').attr('src');
+            var name = $(this).find('span').text();
+            var value = $(this).attr('value');
+            $('.upload-album').attr('value',value);
+            $('.upload-album img').attr('src',src);
+            $('.upload-album span').text(name);
+            $('.screen').hide();
+            $('.tip').css('color','green').text('您已选好相册！');
+        });
+        //点击创建相册后调取的元素
+        $('.create-album').click(function(){
+            window.parent.document.getElementById("new").click();
+            window.parent.document.getElementById('edui7_body').click();
+        });
+        $('.screen').click(function(){
+            var id = $('.upload-album').attr('value');
+            if(id == 0){
+                $('.tip').css('color','red').text('请先选择相册！');
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div id="tabhead" class="tabhead">
+            <span class="tab" data-content-id="remote"><var id="lang_tab_remote"></var></span>
+            <span class="tab focus" data-content-id="upload"><var id="lang_tab_upload"></var></span>
+            <span class="tab" data-content-id="online"><var id="lang_tab_online"></var></span>
+            <span class="tab" data-content-id="search"><var id="lang_tab_search"></var></span>
+        </div>
+        <div class="alignBar">
+            <label class="algnLabel"><var id="lang_input_align"></var></label>
+                    <span id="alignIcon">
+                        <span id="noneAlign" class="none-align focus" data-align="none"></span>
+                        <span id="leftAlign" class="left-align" data-align="left"></span>
+                        <span id="rightAlign" class="right-align" data-align="right"></span>
+                        <span id="centerAlign" class="center-align" data-align="center"></span>
+                    </span>
+            <input id="align" name="align" type="hidden" value="none"/>
+        </div>
+        <div style="z-index:999">
+            <div class="upload-desc">
+                上传到
+            </div>
+            <div class="select-album" id="select-album">
+                <span class="upload-album" value='0'>
+                    <img src="images/album-default.png">
+                    <span>请选择相册</span>
+                    <i class="fa fa-caret-down" style="float:right;line-height:30px;margin-right:5px;color:#888;"></i>
+                </span>
+                <div class="album-list">
+                    <ul>
+                        <li>
+                            <img src="">
+                            <span>请选择相册</span>
+                        </li>
+                    </ul>
+                    <span class="create-album" style="display:absolute">
+                        创建相册
+                    </span>
+                </div>
+            </div>
+            <span class="tip" style="font-size:14px"></span>
+        </div>
+        <div class="screen"></div>
+        <div id="tabbody" class="tabbody">
+
+            <!-- 远程图片 -->
+            <div id="remote" class="panel">
+                <div class="top">
+                    <div class="row">
+                        <label for="url"><var id="lang_input_url"></var></label>
+                        <span><input class="text" id="url" type="text"/></span>
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="row">
+                        <label><var id="lang_input_size"></var></label>
+                        <span><var id="lang_input_width">&nbsp;&nbsp;</var><input class="text" type="text" id="width"/>px </span>
+                        <span><var id="lang_input_height">&nbsp;&nbsp;</var><input class="text" type="text" id="height"/>px </span>
+                        <span><input id="lock" type="checkbox" disabled="disabled"><span id="lockicon"></span></span>
+                    </div>
+                    <div class="row">
+                        <label><var id="lang_input_border"></var></label>
+                        <span><input class="text" type="text" id="border"/>px </span>
+                    </div>
+                    <div class="row">
+                        <label><var id="lang_input_vhspace"></var></label>
+                        <span><input class="text" type="text" id="vhSpace"/>px </span>
+                    </div>
+                    <div class="row">
+                        <label><var id="lang_input_title"></var></label>
+                        <span><input class="text" type="text" id="title"/></span>
+                    </div>
+                </div>
+                <div class="right"><div id="preview"></div></div>
+            </div>
+
+            <!-- 上传图片 -->
+            <div id="upload" class="panel focus">
+                <div id="queueList" class="queueList">
+                    <div class="statusBar element-invisible">
+                        <div class="progress">
+                            <span class="text">0%</span>
+                            <span class="percentage"></span>
+                        </div><div class="info"></div>
+                        <div class="btns">
+                            <div id="filePickerBtn"></div>
+                            <div class="uploadBtn"><var id="lang_start_upload"></var></div>
+                        </div>
+                    </div>
+                    <div id="dndArea" class="placeholder">
+                        <div class="filePickerContainer">
+                            <div id="filePickerReady"></div>
+                        </div>
+                    </div>
+                    <ul class="filelist element-invisible">
+                        <li id="filePickerBlock" class="filePickerBlock"></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 在线图片 -->
+            <div id="online" class="panel">
+                <div id="imageList"><var id="lang_imgLoading"></var></div>
+            </div>
+
+            <!-- 搜索图片 -->
+            <div id="search" class="panel">
+                <div class="searchBar">
+                    <input id="searchTxt" class="searchTxt text" type="text" />
+                    <select id="searchType" class="searchType">
+                        <option value="&s=4&z=0"></option>
+                        <option value="&s=1&z=19"></option>
+                        <option value="&s=2&z=0"></option>
+                        <option value="&s=3&z=0"></option>
+                    </select>
+                    <input id="searchReset" type="button"  />
+                    <input id="searchBtn" type="button"  />
+                </div>
+                <div id="searchList" class="searchList"><ul id="searchListUl"></ul></div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="image.js"></script>
+
+</body>
+</html>

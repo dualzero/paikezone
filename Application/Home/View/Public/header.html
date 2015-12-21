@@ -1,0 +1,33 @@
+<!-- 导航条
+================================================== -->
+<div id="header" class="header">
+    <div id="nav">
+        <div id="logo">
+            <!-- <img src="image/logo2.png"> -->
+        </div>
+        <ul class="first">
+            <li>
+                <a class="father" href="{:U('UCenter/index')}">我的主页</a>
+                <ul class="son">
+                    <!-- <li><a href="">上传照片</a></li> -->
+                    <li><a href="{:U('UCenter/album')}">我的相册</a></li>
+                    <li><a href="{:U('UCenter/dynamic')}">我的动态</a></li>
+                    <li><a href="{:U('UCenter/collect')}">我的收藏</a></li>
+                    <li><a href="{:U('UCenter/data')}">我的资料</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="{:U('Index/index')}">拍客中心</a>
+            </li>
+            <li>
+                <a href="{:U('Plaza/index')}">相册广场</a>
+            </li>
+            <li>
+                <a class="father user" href="{:U('UCenter/index')}"><img src="{$login_user.avatar}"><span>{$login_user.username}</span></a>
+                <ul class="son">
+                    <li class="exit"><a href="{:U('User/logout')}">退出</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div> 
+</div>

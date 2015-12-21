@@ -1,0 +1,296 @@
+@charset "utf-8";
+#body{
+    width: 960px;
+    margin:0 auto;
+}
+#body #top{
+    width: 100%;
+    margin: 20px 0;
+    height: 170px;
+}
+#body #top .avatar{
+    float:left;
+    width: 168px;
+    height: 168px;
+    border:1px solid #eee;
+}
+#body #top .avatar img{
+    width: 150px;
+    height: 150px;
+    margin: 9px;
+}
+#body #top .avatar img:hover{
+    width: 168px;
+    height: 168px;
+    margin: 0;
+}
+#body #top .info{
+    float:left;
+    height: 150px;
+    /*width: 300px;*/
+    margin-top: 20px;
+}
+#body #top .info span.user{
+    font-size: 26px;
+    margin: 25px;
+    line-height: 60px;
+    color: #318989;
+    cursor: pointer;
+}
+#body #top .info .all .list{
+    float: left;
+    width: 80px;
+    height: 60px;
+    margin-top: 20px;
+    line-height: 1.8;
+    color: #666;
+    text-align: center;
+    border-right: 1px dashed #aaa;
+}
+.num{
+    color: #318989;
+    font-size: 16px;
+}
+#body #top .info .all .list .num{
+    color: #318989;
+    font-size: 18px;
+}
+
+
+#body #tab ul{
+    margin-left: 5px;
+}
+#body #tab li{
+    display: inline-block;
+}
+#body #tab li a{
+    display: block;
+    padding: 5px 12px;
+    border:1px solid #ccc;
+    font-size: 15px;
+    color: #555;
+    text-decoration: none;
+    margin-bottom: -1px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    /*border-bottom: 1px solid #fff;*/
+}
+#body #tab li a:hover{
+    color: #E54839;
+}
+.main{
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #fff;
+    width: 440px;
+}
+.cf:before,.cf:after {
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.cf:after {
+    clear: both;
+}
+.cf {
+    *zoom: 1;
+}
+.upload-area {
+    position: relative;
+    float: left;
+    margin-right: 30px;
+    width: 200px;
+    height: 200px;
+    background-color: #F5F5F5;
+    border: 2px solid #E1E1E1;
+}
+.upload-area .file-tips {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    padding: 0 15px;
+    width: 170px;
+    line-height: 1.4;
+    font-size: 12px;
+    color: #A8A8A3;
+    text-align: center;
+}
+.userup-icon {
+    display: inline-block;
+    margin-right: 3px;
+    width: 16px;
+    height: 16px;
+    vertical-align: -2px;
+    background: url("__ROOT__/Public/img/userup_icon.png") no-repeat;
+}
+.uploadify-button {
+    line-height: 120px!important;
+    text-align: center;
+}
+.preview-area {
+    float: left;
+}
+.tcrop {
+    clear: right;
+    font-size: 14px;
+    margin:10px 0;
+}
+.update-pic .crop {
+    background: url("__ROOT__/Public/img/mystery.png") no-repeat scroll center center #EEEEEE;
+    float: left;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+.crop100 {
+    height: 100px;
+    width: 100px;
+}
+.crop60 {
+    height: 60px;
+    margin-left: 20px;
+    width: 60px;
+}
+.update-pic .save-pic {
+    clear: left;
+    margin-right: 20px;
+}
+.update-pic .uppic-btn {
+    background-color: #fff;
+    color: #555;
+    display: block;
+    text-decoration: none;
+    float: left;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+    width: 89px;
+    border-radius: 5px;
+}
+.update-pic .uppic-btn:hover{
+    color: #333;
+    border: 1px solid #aaa;
+}
+.preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    background:#fff;
+    display: none;
+}
+.form-top h3{
+    font-weight: 500;
+    font-size: 15px;
+    margin-top: -5px;
+    line-height: 30px;
+}
+.form-top i{
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 30px;
+    cursor: pointer;
+    color: #777;
+}
+.form-top i:hover{
+    color: #999;
+}
+.fa-plus-square{
+    color: green;
+}
+.dialog{ 
+    position:fixed !important; 
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    border-radius: 5px;
+    background: #fff;
+    color: #555;
+    z-index: 999;
+    display: none;
+}
+.screen{
+    width: 100%;
+    height: 100%;
+    background: #000;
+    position:fixed !important; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    z-index: 888;
+    display: none;
+}
+
+.userdata{
+    line-height: 1.2;
+    color: #555;
+}
+.userdata div{
+    margin: 30px 0;
+}
+.userdata h2{
+    font-size: 16px;
+    margin: 20px 10px 10px 10px;
+}
+.userdata .album-photo-like{
+    padding-left: 10px;
+}
+.userdata .album-photo-like span{
+    margin:0 20px;
+}
+.userdata label{
+    margin-left: 30px;
+    display: inline-block;
+    width: 120px;
+    text-align: left;
+}
+.modify{
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 15px;
+}
+.modify:hover{
+    text-decoration: underline;
+}
+
+.part1,.part2{
+    /*display: none;*/
+}
+
+input{
+    border: 1px solid #aaa;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+select{
+    font-size: 14px;
+    padding: 3px 5px;
+    text-align: center;
+}
+.save-btn{
+    display: inline-block;
+    padding: 5px 25px;
+    font-size: 14px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    color: #555;
+    text-decoration: none;
+    margin-left: 20px;
+}
+.save-btn:hover{
+    color: #333;
+    border-color: #999;
+}

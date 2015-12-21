@@ -1,0 +1,145 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link href="__CSS__/UCenter/userdata.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__CSS__/UCenter/jquery.Jcrop.min.css">
+    <link rel="stylesheet" type="text/css" href="__JS__/UCenter/uploadify-v3.1/uploadify.css">
+    <link rel="stylesheet" type="text/css" href="__JS__/UCenter/ThinkBox/css/ThinkBox.css">
+</block>
+
+<block name="body">
+
+<div id="body">
+    <div id="top">
+        <div class="avatar">
+            <img src="{$user.avatar}">
+        </div>
+        <div class="info">
+            <span class="user">{$user.username}</span>
+            <div class="all">
+                <div class="list"><p class="num">{$user.album_num}</p><p>相册</p></div>
+                <div class="list"><p class="num">{$user.pic_num}</p><p>照片</p></div>
+                <div class="list" style="border:0;"><p class="num">{$user.collect_num}</p><p>收藏</p></div>
+            </div>
+        </div>
+    </div>
+    <div id="tab">
+        <ul>
+            <li><a href="{:U('album',array('uid'=>$user['uid']))}">{$user_self?'我':'Ta'}的相册</a></li>
+            <li><a href="{:U('dynamic',array('uid'=>$user['uid']))}">{$user_self?'我':'Ta'}的动态</a></li>
+            <li><a href="{:U('collect',array('uid'=>$user['uid']))}">{$user_self?'我':'Ta'}的收藏</a></li>
+            <li><a href="{:U('userdata',array('uid'=>$user['uid']))}">{$user_self?'我':'Ta'}的资料</a></li>
+        </ul>
+        <div style="border-bottom:1px solid #ccc"></div>
+    </div>
+    <div class="userdata">
+        <h2>个人信息</h2>
+        <div class="username">
+            <label for="username">用户名</label><span>{$user.username}</span>
+        </div>
+        <div class="avatar-modify">
+            <label for="avatar">头像</label><span><img style="width:150px;height:150px" src="{$user.avatar}"></span> <a href="javascript:void(0)" class="modify">修改</a>
+        </div>
+        <if condition="$user_self eq false">
+            <div class="part1">
+                <div>
+                    <label for="sex">性别</label>
+                    <span class="part1">
+                        <php>
+                            if($user['sex'] == 1){
+                                echo '男';
+                            }else if($user['sex'] == 2){
+                                echo '女';
+                            }
+                        </php>
+                    </span>
+                </div>
+                <div>
+                    <label for="birthday">生日</label> 
+                    <span>{$user.birthday}</span>
+                </div>
+                <div>
+                    <label for="qq">QQ</label>
+                    <span>
+                        {$user.qq}
+                    </span>
+                </div>
+            </div>
+        <else/>
+            <div class="part2">
+                <div>
+                    <label for="sex">性别</label>
+                    <span>
+                        <select id="sex">
+                            <option value="0">选择性别</option>
+                            <option value="1" <if condition="$user.sex eq 1">selected</if>>男</option>
+                            <option value="2" <if condition="$user.sex eq 2">selected</if>>女</option>
+                        </select>
+                    </span>
+                </div>
+                <div>
+                    <label for="birthday">生日</label>
+                    <span>
+                        <input id="birthday" type="text" value="{$user.birthday}">
+                    </span>
+                </div>
+                <div>
+                    <label for="qq">QQ</label>
+                    <span>
+                        <input id="qq" type="text" value="{$user.qq}">
+                    </span>
+                </div>
+                <div>
+                    <input class="uid" type="hidden" value="{$user.uid}">
+                    <a class="save-btn" url="{:U('saveData')}" href="javascript:void(0);">保存</a>
+                </div>
+            </div>
+        </if>
+        <h2>个人状态</h2>
+        <div class="album-photo-like">
+            <span>相册 <font class="num">{$user.album_num}</font></span>  | <span>照片 <font class="num">{$user.pic_num}</font></span> | <span>收藏 <font class="num">{$user.collect_num}</font></span>
+        </div>
+        <div>
+            <label for="reg_time">注册时间</label> <span>{$user.reg_time|time_format}</span>
+        </div>
+        <div class="login_time">
+            <label for="login_time">最近登录</label> <span>{$user.last_login_time|time_format}</span>
+        </div>
+    </div>
+</div>
+<div class="main dialog">
+    <!-- 修改头像 -->
+    <form action="{:U('UCenter/cropImg')}" method="post" id="pic" class="update-pic cf">
+        <div class="form-top" style="margin-bottom:15px">
+            <i class="fa fa-close fa-lg" style="float:right;color:555"></i>
+            <h3 style="font-weight:500;font-size:16px">上传头像</h3>
+        </div>
+        <div class="upload-area">
+            <input type="file" id="user-pic" url='{:U("UCenter/uploadImg")}'>
+            <div class="file-tips">支持JPG,PNG,GIF，图片小于1MB，尺寸不小于100*100！</div>
+            <div class="preview hidden" id="preview-hidden"></div>
+        </div>
+        <div class="preview-area">
+            <input type="hidden" id="x" name="x" />
+            <input type="hidden" id="y" name="y" />
+            <input type="hidden" id="w" name="w" />
+            <input type="hidden" id="h" name="h" />
+            <input type="hidden" id='img_src' name='src'/>
+            <div class="tcrop">头像预览</div>
+            <div class="crop crop100"><img id="crop-preview-100" src="" alt=""></div>
+            <div class="crop crop60"><img id="crop-preview-60" src="" alt=""></div>
+            <a class="uppic-btn save-pic" href="javascript:;">保存</a>
+            <a class="uppic-btn reupload-img" href="javascript:$('#user-pic').uploadify('cancel','*');">重新上传</a>
+        </div>
+    </form>
+    <!-- /修改头像 -->
+</div>
+<div class="screen" style="display:none"></div>
+</block>
+
+<block name="script">
+    <script src="__JS__/UCenter/uploadify-v3.1/jquery.uploadify-3.1.min.js"></script>
+    <script src="__JS__/UCenter/jquery.Jcrop.min.js"></script>
+    <script src="__JS__/UCenter/ThinkBox/jquery.thinkbox.js"></script>
+    <script src="__JS__/UCenter/userdata.js"></script>
+</block>

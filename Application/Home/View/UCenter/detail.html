@@ -1,0 +1,180 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link href="__CSS__/UCenter/detail.css" rel="stylesheet">
+</block>
+
+<block name="body">
+
+<div id="body">
+    <div id="left">
+        <div id="top">
+            <p><a href="{:U('album',array('uid'=>$user['uid']))}">{$user.username} </a> 的相册 ＞ <span>{$album.name}</span></p>
+            <!-- <p class="comment">评论[123]</p> -->
+            <div class="describe">
+                <span>
+                    {$album.description|default='暂无描述'}
+                </span>
+                <label style="color:#0D6376;"><<相册描述</label>
+            </div>
+        </div>
+        <div id="center">
+            <div class="tab">
+                <ul>
+                    <li><img xsrc="__IMG__/UCenter/slt2.jpg" src="__IMG__/UCenter/slt.jpg">小图模式</li>  
+                    <li><img xsrc="__IMG__/UCenter/lb2.jpg" src="__IMG__/UCenter/lb.jpg">列表模式</li>
+                    <li><img xsrc="__IMG__/UCenter/hdp2.jpg" src="__IMG__/UCenter/hdp.jpg">幻灯片</li>
+                </ul>
+            </div>
+            <div id="photo_list">
+                <notempty name="pic_list">
+                    <volist name="pic_list" id="pic">
+                        <div class="list">
+                            <div class="photo">
+                                <img src="{$pic.thumb_path}" path="{$pic.path}" thumb="{$pic.thumb_path}">
+                            </div>
+                            <div class="info">
+                                <p class="time">2015年7月30日</p>
+                                <if condition="$user_self eq true">
+                                    <p class="share" value="{$pic.id}" onclick="window.open('{:U('PicEdit/edit',array('pic_id'=>$pic['id']))}')">编辑</p>
+                                <else/>
+                                    <if condition="$pic.collect eq 1">
+                                        <p class="share collect-add" value="{$pic.id}" style="display:none" url="{:U('collect_add')}">收藏</p>
+                                        <p class="share collect-cancle" value="{$pic.id}" url="{:U('collect_cancle')}">取消收藏</p>
+                                    <else/>
+                                        <p class="share collect-add" value="{$pic.id}" url="{:U('collect_add')}">收藏</p>
+                                        <p class="share collect-cancle" value="{$pic.id}" style="display:none" url="{:U('collect_cancle')}">取消收藏</p>
+                                    </if>
+                                </if>
+                            </div>
+                        </div>
+                    </volist>
+                <else/>
+                    <div style="padding:20px;color:#555;">暂时还没有照片哦、</div>
+                </notempty>
+            </div>
+        </div>
+      <!--   <div id="bottom">
+            <div style="clear:both;height:20px"></div>
+            <div class="show_comment">
+                <div class="list">
+                    <p class="info"><label class="user">用户名 </label>评论于<label>2015-08-17 00:19</label></p>
+                    <p class="content">这里显示评论内容</p>
+                </div>
+                <div class="list">
+                    <p class="info"><label class="user">陈玲玲 </label>评论于<label>2015-08-17 00:19</label></p>
+                    <p class="content">这里显示评论内容这里显示评论内容这里显示评论内容这里显示评论内容这里显示评论内容这里显示评论内容这里显示评论内容这里显示评论内容这里显示评论内容这里显示评论内容</p>
+                </div>
+                <div class="list">
+                    <p class="info"><label class="user">用户名 </label>评论于<label>2015-08-17 00:19</label></p>
+                    <p class="content">这里显示评论内容</p>
+                </div>
+                <div class="list">
+                    <p class="info"><label class="user">用户名 </label>评论于<label>2015-08-17 00:19</label></p>
+                    <p class="content">这里显示评论内容</p>
+                </div>
+                <div class="list bottom">
+                    <span >评论[123]</span>
+                    <span class="bottom show">显示全部</span><span class="bottom show">收起</span>
+                </div>
+            </div>
+            <span class="leave">留下足迹：</span>
+            <div id="comment">
+                <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                <button>评论</button>
+            </div>
+        </div> -->
+    </div>
+    <div id="right">
+        <div id="right_top">
+            <div class="avatar">
+                <img src="{$user.avatar}">
+            </div>
+            <div class="info">
+                <a target="_blank" href="{:U('album',array('uid'=>$user['uid']))}" class="user">{$user.username}</a>
+                <!-- <button class="care">关注wo</button> -->
+                <div class="all">
+                    <div class="list"><p class="num" style="margin-left:5px">{$user.album_num}</p><p>相册</p></div>
+                    <div class="list"><p class="num" style="margin-left:5px">{$user.pic_num}</p><p>照片</p></div>
+                    <div class="list" style="border:0;"><p class="num" style="margin-left:5px">{$user.collect_num}</p><p>收藏</p></div>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div id="right_center">
+            <span class="album_name">{$album.name}</span>
+            <div class="cd1">
+                <div class="cd">
+                    <div class="photo cd">
+                            <img src="{$album.cover|default='Uploads/Picture/pic_none.png'}">
+                            <div class="info">
+                                <p class="safe">
+                                    <php>
+                                        if($album['limit'] == 1){
+                                            echo '所有人可见';
+                                        }else{
+                                            echo '仅自己可见';
+                                        }
+                                    </php>
+                                </p>
+                                <p>
+                                    <span class="time">{$vo.create_time|time_format}</span>
+                                    <span class="photo_num">{$album.number} 张</span>
+                                </p>
+                            </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div id="right_bottom">
+            <p class="album">{$user_self?'我':'Ta'}的相册</p>
+            <p class="all"><a target="_blank" href="{:U('album',array('uid'=>$user['uid']))}">查看全部</a></p>
+            <div style="clear:both"></div>
+            <notempty name="album_list">
+                <volist name="album_list" id="vo">
+                    <div class="list_album">
+                        <div class="cd2">
+                            <div class="cd3">
+                                <div class="photo2 cd3">
+                                    <img url="{:U('detail',array('uid'=>$user['uid'],'album_id'=>$vo['id']))}" src="{$vo.cover|default='Uploads/Picture/pic_none.png'}" title="点击查看相册详情">
+                                    <span class="photo_num2"><span>{$vo.number} 张</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="each_name">
+                            <p>{$vo.name}</p>
+                            <p>创建于{$album.create_time|time_format}</p>
+                        </div>
+                    </div>
+                </volist>
+            <else/>
+                <div style="padding:20px;color:#555;">没有其他相册哦、</div>
+            </notempty>
+        </div>
+    </div>
+    <div class="big-img"><img src=""></div>
+    <div class="screen"></div>
+</div>
+<div class="swiper-part">
+    <i class="fa fa-close fa-2x"></i>
+    <div class="swiper-container pic-container">
+        <div class="swiper-wrapper">
+        </div>
+    </div>
+    <!-- 上一页 下一页 -->
+    <span class="swiper-change swiper-left fa-5x"><i class="fa fa-angle-left"></i></span>
+    <span class="swiper-change swiper-right fa-5x"><i class="fa fa-angle-right"></i></span>
+    <div class="swiper-container thumb-container">
+        <div class="swiper-wrapper">
+        </div>
+    </div>
+</div>
+
+</block>
+
+<block name="script">
+    <script src="__JS__/UCenter/detail.js"></script>
+    <script>
+        
+    </script>
+</block>

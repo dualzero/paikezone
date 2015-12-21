@@ -1,0 +1,218 @@
+<extend name="Base/common"/>
+<block name="style">
+    <link href="__CSS__/Index/index.css" rel="stylesheet">
+</block>
+
+<block name="body">
+<div id="body">
+    <div id="left"> 
+        <div id="dynamic">
+            <notempty name="dyn_list">
+                <volist name="dyn_list" id="dyn">
+                    <div class="top">
+                        <span class="left">
+                            <img src="{$dyn['user']['avatar']}">
+                        </span>
+                        <div class="right">
+                            <p><a href="{:U('UCenter/album',array('uid'=>$dyn['user']['uid']))}" class="name" target="_blank">
+                                {$user_self?'我':$user['username']}
+                            </a>：上传了 {$dyn.count} 张照片到相册 -- <a href="{:U('UCenter/detail',array('uid'=>$dyn['user']['uid'], 'album_id'=>$dyn['album']['id']))}" class="album" target="_blank">{$dyn['album']['name']}</a> <span>上传于{$dyn.create_time|time_format}</span></p>
+                            <!-- <p class="comment_btn">评论</p> -->
+                            <!--<div class="data">
+                                <div class="user_img">
+                                    <img src="__AVATAR__/user.jpg">
+                                </div>
+                                <div class="data_info">
+                                    <p class="user">用户名</p>
+                                    <p><span class="s_b sex">女  </span><span class="s_b birth">生于2015-8-22</span></p>
+                                    <p class="email">994728885@qq.com</p>
+                                    <p style="color: #0D6376;"> <span class="care_num">123</span>&lt;&lt;关注者</p>
+                                </div>
+                            </div>-->
+                            <div class="photo">
+                                <volist name="dyn.pic_list" id="pic">
+                                    <img xsrc="{$pic.pic_path}" src="{$pic.thumb_path}"/>
+                                </volist>
+                                <if condition="$dyn['count'] gt 10">
+                                    <a href="{:U('UCenter/detail',array('uid'=>$dyn['user']['uid'], 'album_id'=>$dyn['album']['id']))}" class="more">更多..</a>
+                                </if>
+                            </div>
+                          <!--   <div class="comment">                           
+                                <textarea style="resize:none"></textarea>
+                                <p>
+                                    <span class="submit">评论</span>
+                                    <span class="cancel">取消</span>
+                                </p>
+                            </div> -->
+                        </div>
+                    </div> 
+                </volist>
+            </notempty>
+        </div>                               
+    </div>
+    <div id="right">
+        <div id="right_top">
+            <div class="avatar">
+                <img src="{$user.avatar}">
+            </div>
+            <div class="info">
+                <a target="_blank" href="{:U('UCenter/album',array('uid'=>$user['uid']))}" class="user">{$user.username}</a>
+                <!-- <button class="care">关注wo</button> -->
+                <div class="all">
+                    <div class="list"><p class="num" style="margin-left:5px">{$user.album_num}</p><p>相册</p></div>
+                    <div class="list"><p class="num" style="margin-left:5px">{$user.pic_num}</p><p>照片</p></div>
+                    <div class="list" style="border:0;"><p class="num" style="margin-left:5px">{$user.collect_num}</p><p>收藏</p></div>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+<!--         <div id="right_center">
+            <span class="who">谁关注我</span>
+            <span>|</span>
+            <span class="i">我关注谁</span>
+            <div class="frame who_care">
+                <div class="user">
+                    <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                    <div class="right">
+                        <p class="user_name">用户名</p>
+                        <p>
+                            <button class="care">关注Ta</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="user">
+                    <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                    <div class="right">
+                        <p class="user_name">用户名</p>
+                        <p>
+                            <button class="care">关注Ta</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="user">
+                    <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                    <div class="right">
+                        <p class="user_name">用户名</p>
+                        <p>
+                            <button class="care">关注Ta</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="user">
+                    <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                    <div class="right">
+                        <p class="user_name">用户名</p>
+                        <p>
+                            <button class="care">关注Ta</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="user">
+                    <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                    <div class="right">
+                        <p class="user_name">用户名</p>
+                        <p>
+                            <button class="care">关注Ta</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="user">
+                    <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                    <div class="right">
+                        <p class="user_name">用户名</p>
+                        <p>
+                            <button class="care">关注Ta</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="frame i_care">
+                <div class="user">
+                    <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                    <div class="right">
+                        <p class="user_name">用户名</p>
+                        <p>
+                            <button class="detail">详情</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="user">
+                    <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                    <div class="right">
+                        <p class="user_name">用户名</p>
+                        <p>
+                            <button class="detail">详情</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="user">
+                    <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                    <div class="right">
+                        <p class="user_name">用户名</p>
+                        <p>
+                            <button class="detail">详情</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="user">
+                    <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                    <div class="right">
+                        <p class="user_name">用户名</p>
+                        <p>
+                            <button class="detail">详情</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="user">
+                    <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                    <div class="right">
+                        <p class="user_name">用户名</p>
+                        <p>
+                            <button class="detail">详情</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="user">
+                    <div class="left"><img src="__AVATAR__/user.jpg"></div>
+                    <div class="right">
+                        <p class="user_name">用户名</p>
+                        <p>
+                            <button class="detail">详情</button>
+                        </p>
+                    </div>
+                </div>
+                <p>...</p>
+            </div>  
+        </div> -->
+        <div id="right_bottom">
+            <p class="album">我的相册</p>
+            <p class="all"><a target="_blank" href="{:U('UCenter/album',array('uid'=>$user['uid']))}">查看全部</a></p>
+            <div style="clear:both"></div>
+            <notempty name="album_list">
+                <volist name="album_list" id="vo">
+                    <div class="list_album">
+                        <div class="cd2">
+                            <div class="cd3">
+                                <div class="photo2 cd3">
+                                    <img url="{:U('UCenter/detail',array('uid'=>$user['uid'],'album_id'=>$vo['id']))}" src="{$vo.cover|default='Uploads/Picture/pic_none.png'}" title="点击查看相册详情">
+                                    <span class="photo_num2"><span>{$vo.number} 张</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="each_name">
+                            <p>{$vo.name}</p>
+                            <p>创建于{$album.create_time|time_format}</p>
+                        </div>
+                    </div>
+                </volist>
+            <else/>
+                <div style="padding:20px;color:#555;">暂时没有相册哦、</div>
+            </notempty>
+        </div>
+    </div>
+</div>
+</block>
+
+<block name="script">
+    <script src="__JS__/Index/index.js"></script>
+</block>

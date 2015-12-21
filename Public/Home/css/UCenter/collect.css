@@ -1,0 +1,149 @@
+#body{
+	width: 960px;
+	margin:0 auto;
+}
+#body #top{
+	width: 100%;
+	margin: 20px 0;
+	height: 170px;
+}
+#body #top .avatar{
+	float:left;
+	width: 168px;
+	height: 168px;
+	border:1px solid #eee;
+}
+#body #top .avatar img{
+	width: 150px;
+	height: 150px;
+	margin: 9px;
+}
+#body #top .avatar img:hover{
+	width: 168px;
+	height: 168px;
+	margin: 0;
+}
+#body #top .info{
+	float:left;
+	height: 150px;
+	/*width: 300px;*/
+	margin-top: 20px;
+}
+#body #top .info span.user{
+	font-size: 26px;
+	margin: 25px;
+	line-height: 60px;
+	color: #318989;
+	cursor: pointer;
+	text-decoration: none;
+}
+#body #top .info .all .list{
+	float: left;
+	width: 80px;
+	height: 60px;
+	margin-top: 20px;
+	line-height: 1.8;
+	color: #666;
+	text-align: center;
+	border-right: 1px dashed #aaa;
+}
+#body #top .info .all .list .num{
+	color: #318989;
+	font-size: 16px;
+}
+
+
+#body #tab ul{
+	margin-left: 5px;
+}
+#body #tab li{
+	display: inline-block;
+}
+#body #tab li a{
+	display: block;
+	padding: 5px 12px;
+	border:1px solid #ccc;
+	font-size: 15px;
+	color: #555;
+	text-decoration: none;
+	margin-bottom: -1px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	/*border-bottom: 1px solid #fff;*/
+}
+#body #tab li a:hover{
+	color: #E54839;
+}
+#collect{
+	font-family: '微软雅黑';
+}
+#collect .list{
+	float: left;
+	width: 200px;
+	margin: 25px 0 0 50px;
+}
+#collect .list .photo img{
+	width: 200px;
+	height: 200px;
+	cursor: pointer;
+}
+#collect .list .info{
+	line-height: 20px;
+}
+#collect .list .info p{
+	font-size: 14px;
+	color: #555;
+}
+#collect .list .info p span{
+	cursor: pointer;
+}
+#collect .list .info p span.user{
+	color: #0D6376;
+}
+#collect .list .info p span.cancle{
+	float: right;
+	font-size: 12px;
+	color: #0D6376;
+}
+#collect .list .info p span.album{
+	color: #318989;
+}
+.big-img{
+	position: fixed !important;
+	display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    width: 80%;
+    height: 80%;
+    z-index: 999;
+}
+.big-img img{
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    max-width: 100%;
+    max-height: 100%;
+}
+.screen{
+	display: none;
+	position: fixed !important;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    z-index: 888;
+}

@@ -1,0 +1,137 @@
+<extend name="Base/common"/>
+<block name="style">
+    <link href="__CSS__/Plaza/index.css" rel="stylesheet">
+</block>
+
+<block name="body">
+<div id="main">
+<div id="top">
+    <div class="tag">
+        <div class="tag_head"><img src="__IMG__/Plaza/tag2.png"></div>
+        <volist name="type_list" id="type">
+            <if condition="$now_type eq $type['id']">
+                <a href="javascript:void(0)">|</a> <a href="{:U('',array('type'=>$type['id']))}" class="a current">{$type['name']}</a>
+            <else/>
+                <a href="javascript:void(0)">|</a> <a href="{:U('',array('type'=>$type['id']))}" class="a">{$type['name']}</a>
+            </if>
+        </volist>
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <volist name="pic_list" id="pic">
+                <div class="swiper-slide" onclick="locaion = '{:U('UCenter/Album',array('uid'=>$pic['uid'], 'album_id' => $pic['album_id']))}'">
+                    <img src="{$pic.path}">
+                </div>
+            </volist>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<div id="center">
+    <div class="center_top">
+        <p class="recom">相册推荐</p>
+        <notempty name="album_list">
+            <volist name="album_list" id="album">
+                <div class="album_recom">
+                    <div class="user">
+                        <div class="user_img"><img src="{$album.avatar}"></div>
+                        <div class="info">
+                            <p>
+                                <a target="_blank" href="{:U('UCenter/Album',array('uid'=>$album['uid']))}">
+                                    {$album.username}
+                                </a>
+                                --
+                                <a target="_blank" href="{:U('UCenter/detail',array('uid'=>$album['uid'],'album_id'=>$album['id']))}">
+                                    {$album.name}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="album"><img src="{$album.cover}"></div>
+                </div>
+            </volist>
+        <else/>
+            <div style="padding:20px;color:#555;">暂时没有推荐的相册哦、</div>
+        </notempty> 
+    </div>
+    <div class="center_bottom">
+        <p class="recom">拍客推荐</p>
+        <volist name="user_list" id="user">
+            <div class="user_recom">
+                <div class="user_img">
+                    <a target="_blank" href="{:U('UCenter/album',array('uid'=>$user['uid']))}">
+                        <img src="{$user.avatar}">
+                    </a>
+                </div>
+                <div class="info">
+                    <p class="user_name">
+                        <a target="_blank" href="{:U('UCenter/album',array('uid'=>$user['uid']))}">{$user.username}</a>
+                    </p>
+                </div>
+            </div> 
+        </volist>
+    </div>
+</div>
+<div id="bottom">
+    <p class="hot_photo">热门图片：</p>
+    <!-- 瀑布流样式开始 -->
+    <div class="waterfull clearfloat" id="waterfull">
+        <ul value="{$now_type}">
+            <notempty name="pic_list">
+                <volist name="pic_list" id="pic">
+                     <li class="item">
+                        <a href="{:U('UCenter/Album',array('uid'=>$pic['uid'], 'album_id' => $pic['album_id']))}">
+                            <img src="{$pic.path}" alt="">
+                        </a>
+                        <div class="info">
+                            <div class="left"><img src="{$pic.avatar}"></div>
+                            <div class="right">
+                                <p><span class="color user">{$pic.username}</span> 上传了照片到 <span class="color album">{$pic.name}</span></p>
+                                <p style="font-size:13px;">{$pic.create_time|time_format}</p>
+                            </div>
+                        </div>
+                    </li>
+                </volist>
+            <else/>
+
+            </notempty>
+            <!-- <li class="item">
+                <a href="#">
+                    <img src="album/admin/album1/t8.jpg" alt="">
+                </a>
+                <div class="info">
+                    <div class="left"><img src="image/user.jpg"></div>
+                    <div class="right">
+                        <p><span class="color user">×××</span>上传了照片到<span class="color album">相册名称</span></p>
+                        <p style="font-size:13px;">2015-8-22 22:54</p>
+                    </div>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+    <!-- loading按钮自己通过样式调整 -->
+    <div id="imloading" style="width:150px;height:30px;line-height:30px;font-size:16px;text-align:center;border-radius:3px;opacity:0.7;background:#000;margin:10px auto 30px;color:#fff;display:none">
+        I'm Loading.....
+    </div>
+</div>
+</div>
+</block>
+
+<block name="script">
+    <script src="__JS__/Plaza/index.js"></script>
+    <!--这个插件是瀑布流主插件函数必须-->
+    <script type="text/javascript" src="__JS__/Plaza/jquery.masonry.min.js"></script>
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 4,
+        paginationClickable: true,
+        spaceBetween: 15,
+        freeMode: true,
+        loop:true,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: false
+    });
+    </script>
+</block>

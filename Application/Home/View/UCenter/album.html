@@ -1,0 +1,174 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link href="__CSS__/UCenter/album.css" rel="stylesheet">
+</block>
+
+<block name="body">
+
+<div id="body">
+    <div id="top">
+        <div class="avatar">
+            <img src="{$user.avatar}">
+        </div>
+        <div class="info">
+            <span class="user">{$user.username}</span>
+            <div class="all">
+                <div class="list"><p class="num">{$user.album_num}</p><p>相册</p></div>
+                <div class="list"><p class="num">{$user.pic_num}</p><p>照片</p></div>
+                <div class="list" style="border:0;"><p class="num">{$user.collect_num}</p><p>收藏</p></div>
+            </div>
+        </div>
+    </div>
+    <div id="tab">
+        <ul>
+            <li><a href="{:U('album',array('uid'=>$user['uid']))}">{$user_self?'我':'Ta'}的相册</a></li>
+            <li><a href="{:U('dynamic',array('uid'=>$user['uid']))}">{$user_self?'我':'Ta'}的动态</a></li>
+            <li><a href="{:U('collect',array('uid'=>$user['uid']))}">{$user_self?'我':'Ta'}的收藏</a></li>
+            <li><a href="{:U('userdata',array('uid'=>$user['uid']))}">{$user_self?'我':'Ta'}的资料</a></li>
+        </ul>
+        <div style="border-bottom:1px solid #ccc"></div>
+    </div>
+    <div id="album">
+        <div class="button">
+            <if condition="$user_self eq true">
+                <button class="new" id="new">创建相册</button>
+                <button class="upload">上传照片</button>
+                <div id="ueditor"></div>
+            </if>
+        </div>
+        <notempty name="album_list">
+            <volist name="album_list" id="vo">
+                <div class="list" value="{$vo.id}" url="{:U('detail',array('uid'=>$user['uid'],'album_id'=>$vo['id']))}">
+                    <if condition="$user_self eq true">
+                        <div class="edit">
+                            <i class="fa fa-chevron-down"></i>
+                            <ul class="edit-list" value="{$vo.id}">
+                                <li class="edit-item" url="{:U('get_album_info')}">编辑</li>
+                                <li class="cover-item" url="{:U('get_pics')}">设置封面</li>
+                                <li class="del-item" url="{:U('del_album')}">删除</li>
+                            </ul>
+                        </div>
+                    </if>
+                    <div class="cd1">
+                        <div class="cd">
+                            <div class="photo cd">
+                                    <img src="{$vo.cover|default='Uploads/Picture/pic_none.png'}">
+                                    <span class="photo_num"><span>{$vo.number} 张</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <span class="comment">{$vo.typename}</span>
+                        <p class="name">{$vo.name}</p>
+                        <p class="time">更新于{$vo.update_time|time_format}</p>
+                    </div>
+                </div>
+            </volist>
+        <else/>
+            <div style="padding:20px;color:#555;">暂时没有相册哦、</div>
+        </notempty>
+    </div>
+</div>
+<div class="dialog" id="create-album">
+    <form action="{:U('create_album')}" method="post" class="create-form">
+        <div class="form-item form-top">
+            <i class="fa fa-close fa-lg" style="float:right"></i>
+            <h3>创建相册</h3>
+        </div>
+        <div class="form-item">
+            <input type="text" placeholder="请输入相册名称" name="name">
+        </div>
+        <div class="form-item">
+            <textarea name="description" placeholder="请输入相册的描述(非必填)"></textarea>
+        </div>
+        <div class="form-item" style="font-size:14px">
+            分类:
+            <select name="type">
+                <option value="0">--请选择--</option>
+                <option value="1">生活</option>
+                <option value="2">人物</option>
+                <option value="3">风景</option>
+                <option value="4">旅游</option>
+                <option value="5">其他</option>
+            </select>
+            <span style="display:inline-block;width:10px"></span>权限:
+            <select name="limit">
+                <option value="0">--请选择--</option>
+                <option value="1">公开</option>
+                <option value="2">私密</option>
+            </select>
+        </div>
+        <div class="check-tip">
+            提示：<span>请输入相册信息</span>
+        </div>
+        <div class="form-item">
+            <button type="submit" class="btn">创&nbsp;建</button>
+        </div>
+    </form>
+</div>
+<div class="dialog" id="edit-album">
+    <form action="{:U('edit_album')}" method="post" class="edit-form">
+        <div class="form-item form-top">
+            <i class="fa fa-close fa-lg" style="float:right"></i>
+            <h3>编辑相册</h3>
+        </div>
+        <div class="form-item">
+            <input type="text" placeholder="请输入相册名称" name="name">
+        </div>
+        <div class="form-item">
+            <textarea name="description" placeholder="请输入相册的描述(非必填)"></textarea>
+        </div>
+        <div class="form-item" style="font-size:14px">
+            分类:
+            <select name="type">
+                <option value="0">--请选择--</option>
+                <option value="1">生活</option>
+                <option value="2">人物</option>
+                <option value="3">风景</option>
+                <option value="4">旅游</option>
+                <option value="5">其他</option>
+            </select>
+            <span style="display:inline-block;width:10px"></span>权限:
+            <select name="limit">
+                <option value="0">--请选择--</option>
+                <option value="1">公开</option>
+                <option value="2">私密</option>
+            </select>
+        </div>
+        <div class="check-tip">
+            提示：<span>请编辑相册信息</span>
+        </div>
+        <div class="form-item">
+            <input type="hidden" name="id">
+            <button type="submit" class="btn">保&nbsp;存</button>
+        </div>
+    </form>
+</div>
+<div class="dialog" id="set-cover">
+    <form action="{:U('set_cover')}" method="post" class="set-cover-form">
+        <div class="form-item form-top">
+            <i class="fa fa-close fa-lg" style="float:right"></i>
+            <h3>设置封面</h3>
+        </div>
+        <div class="form-item imgs">
+        </div>
+        <div class="form-item check-tip">
+            <input type="hidden" name="id">
+            <input type="hidden" name="cover_id">
+            提示：<span>请选择您要作为封面的图片</span>
+            <button type="submit" class="btn">保&nbsp;存</button>
+        </div>
+    </form>
+</div>
+<div class="temp-img-list" style="dislay:none"></div>
+<div class="screen"></div>
+
+</block>
+
+<block name="script">
+    <script type="text/javascript" charset="utf-8" src="__STATIC__/ueditor2/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__STATIC__/ueditor2/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__STATIC__/ueditor2/lang/zh-cn/zh-cn.js"></script>
+    <script src="__JS__/UCenter/album.js"></script>
+</block>

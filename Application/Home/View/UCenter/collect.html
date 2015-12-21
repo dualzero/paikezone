@@ -1,0 +1,56 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link href="__CSS__/UCenter/collect.css" rel="stylesheet">
+</block>
+
+<block name="body">
+<div id="body">
+    <div id="top">
+        <div class="avatar">
+            <img src="{$user.avatar}">
+        </div>
+        <div class="info">
+            <span class="user">{$user.username}</span>
+            <div class="all">
+                <div class="list"><p class="num">{$user.album_num}</p><p>相册</p></div>
+                <div class="list"><p class="num">{$user.pic_num}</p><p>照片</p></div>
+                <div class="list" style="border:0;"><p class="num">{$user.collect_num}</p><p>收藏</p></div>
+            </div>
+        </div>
+    </div>
+    <div id="tab">
+        <ul>
+            <li><a href="{:U('album',array('uid'=>$user['uid']))}">{$user_self?'我':'Ta'}的相册</a></li>
+            <li><a href="{:U('dynamic',array('uid'=>$user['uid']))}">{$user_self?'我':'Ta'}的动态</a></li>
+            <li><a href="{:U('collect',array('uid'=>$user['uid']))}">{$user_self?'我':'Ta'}的收藏</a></li>
+            <li><a href="{:U('userdata',array('uid'=>$user['uid']))}">{$user_self?'我':'Ta'}的资料</a></li>
+        </ul>
+        <div style="border-bottom:1px solid #ccc"></div>
+    </div>
+    <div id="collect">
+        <notempty name="collect_list">
+            <volist name="collect_list" id="collect">
+                <div class="list">
+                    <div class="photo">
+                        <img src="{$collect.pic_path}">
+                    </div>
+                    <div class="info">
+                        <p>来自于：<span url="{:U('album', array('uid'=>$collect['uid']))}" class="user">{$collect.username}</span> <span url="{:U('collect_cancle')}" value="{$collect.pic_id}" class="cancle">取消收藏</span></p>
+                        <p>所在相册 -- <span url="{:U('detail', array('uid'=>$collect['uid'], 'album_id'=>$collect['album_id']))}" class="album">{$collect.album_name}</span></p>
+                    </div>
+                </div>
+            </volist>
+        <else/>
+            <div style="padding:20px;color:#555;">暂时还没有收藏的图片哦、</div>
+        </notempty>
+    </div>
+    <div class="big-img"><img src=""></div>
+    <div class="screen"></div>
+</div>
+
+</block>
+
+<block name="script">
+    <script src="__JS__/UCenter/collect.js"></script>
+</block>

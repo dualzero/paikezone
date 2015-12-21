@@ -1,0 +1,493 @@
+#album{
+	font-family: '微软雅黑';
+}
+/*创建相册、上传照片*/
+#album button{
+	margin: 25px 15px 0 5px;
+    padding: 7px 20px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #555;
+    background: #fff;
+}
+#album button:hover{
+    color: #E54839;
+}
+.ui-button-text-only .ui-button-text{
+	font-size: 15px;
+	padding: 5px 15px;
+	margin-top: 0;
+	font-family: '微软雅黑';
+}
+.ui-state-default{
+	background: #fff;
+	border:1px solid #aaa;
+}
+
+#album .list{
+	width: 160px;
+	float: left;
+	margin: 25px 0 0 36px;
+    position: relative;
+}
+#album .list .cd1{
+	width: 150px;
+	height: 150px;
+	border:1px solid #aaa;
+}
+#album .list .cd1 .cd{
+	position: relative;
+	width: 150px;
+	height: 150px;
+	background: #fff;
+	border:1px solid #aaa;
+	top: -3px;
+	left: -3px;	
+}
+#album .list .photo img{
+	width: 150px;
+	height: 150px;
+	cursor: pointer;
+}
+#album .list .photo .photo_num{
+	position: relative;
+	top: -35px;
+	left: 85px;
+	font-size: 14px;
+	padding: 2px 10px;
+	background: #000;
+	color: #fff;
+	opacity: 0.9;
+	filter:alpha(opacity=90);
+	background-color: rgba(0,0,0,0.8);
+	border-radius: 5px;
+}
+#album .list .info{
+	margin: 5px;
+	line-height: 20px;
+}
+#album .list .info .name{
+	font-size: 14px;
+	color: #555;
+	font-weight: bold;
+}
+#album .list .info span{
+	float: right;
+	font-size: 12px;
+	color: #888;
+	cursor: pointer;
+}
+#album .list .info .time{
+	color: #777;
+	font-size: 13px;
+}
+
+
+/*创建相册--form*/
+#creat_album{
+	padding: 10px 0;
+	display: none;
+}
+/*#creat_album ol{
+	margin: 0;
+	padding: 0 0 0 20px;
+	color: maroon;
+}
+#creat_album ol li{
+	height: 20px;
+}*/
+#creat_album p{
+	margin:  10px 0;
+	padding: 0;
+}
+#creat_album p label{
+	font-size: 14px;
+	color: #318989;
+	display: inline-block;
+	width: 90px;
+	text-align: right;
+}
+#creat_album p label.title_item{
+	text-align: center;
+	width: 52px;
+	font-size: 13px;
+}
+#creat_album .text{
+	border-radius: 5px;
+	width: 222px;
+	height: 25px;
+	text-indent: 5px;
+	font-size: 14px;
+}
+#creat_album textarea{
+	border-radius: 5px;
+	width: 224px;
+	height: 45px;
+	font-size: 14px;
+	resize:none;
+}
+#creat_album p span.star{
+	color: maroon;
+	font-size: 18px;
+}
+#creat_album p select{
+	font-size: 13px;
+}
+
+/*我的资料*/
+#mydata p{
+	margin: 20px 20px;
+	color: #318989;
+	font-weight: bold;
+}
+#mydata p .same{
+	font-weight: normal;
+	color: #555;
+}
+#body{
+	width: 960px;
+	margin:0 auto;
+}
+#body #top{
+	width: 100%;
+	margin: 20px 0;
+	height: 170px;
+}
+#body #top .avatar{
+	float:left;
+	width: 168px;
+	height: 168px;
+	border:1px solid #eee;
+}
+#body #top .avatar img{
+	width: 150px;
+	height: 150px;
+	margin: 9px;
+}
+#body #top .avatar img:hover{
+	width: 168px;
+	height: 168px;
+	margin: 0;
+}
+#body #top .info{
+	float:left;
+	height: 150px;
+	/*width: 300px;*/
+	margin-top: 20px;
+}
+#body #top .info span.user{
+	font-size: 26px;
+	margin: 25px;
+	line-height: 60px;
+	color: #318989;
+	cursor: pointer;
+}
+#body #top .info .all .list{
+	float: left;
+	width: 80px;
+	height: 60px;
+	margin-top: 20px;
+	line-height: 1.8;
+	color: #666;
+	text-align: center;
+	border-right: 1px dashed #aaa;
+}
+#body #top .info .all .list .num{
+	color: #318989;
+	font-size: 16px;
+}
+
+
+#body #tab ul{
+	margin-left: 5px;
+}
+#body #tab li{
+	display: inline-block;
+}
+#body #tab li a{
+	display: block;
+	padding: 5px 12px;
+	border:1px solid #ccc;
+	font-size: 15px;
+	color: #555;
+	text-decoration: none;
+	margin-bottom: -1px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	/*border-bottom: 1px solid #fff;*/
+}
+#body #tab li a:hover{
+	color: #E54839;
+}
+
+/*弹出窗体*/
+.dialog{
+    position:fixed !important; 
+    position: absolute;
+    display: none;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    width: 280px;
+    padding: 5px 20px 10px;
+    /*border:2px solid #555;*/
+    border-radius: 5px;
+    background: #fff;
+    color: #555;
+    z-index: 999;
+}
+form.login,form.reg{
+    display: block;
+    line-height: 1.5;
+}
+.form-item{
+    margin: 12px 0;
+    width: 100%;
+}
+.form-item input{
+    width: 95%;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    background: #fff;
+    display: inline-block;
+    padding: 5px 6px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555;
+    vertical-align: middle;
+}
+.form-item select{
+	font-size: 13px;
+	line-height: 1.5;
+	height: 25px;
+	text-align: center;
+}
+.form-item input[type='radio']{
+	display: inline-block;
+	width: 10%;
+}
+.form-item textarea{
+	padding: 5px;
+	width: 95%;
+	height: 42px;
+	line-height: 1.5;
+	font-size: 14px;
+	border-radius: 4px;
+	background: #fff;
+    display: inline-block;
+    padding: 5px 6px;
+    resize:none;
+}
+.form-item button{
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+    background: #2C7C7C;
+    color: #fff;
+}
+.form-item button:hover{
+    background: #3BB2B2;
+}
+.form-item .checkbox{
+    width: auto;
+    margin-left: 5px;
+}
+.form-item span{
+    font-size: 12px;
+    line-height: 20px;
+}
+.form-item .forget{
+    float: right;
+    line-height: 20px;
+}
+.form-item a{
+    font-size: 12px;
+    text-decoration: none;
+}
+.form-item a:hover{
+    text-decoration: underline;
+}
+.form-top{
+    height: 30px;
+}
+.form-item h3{
+    font-weight: 500;
+    font-size: 15px;
+    margin-top: -5px;
+    line-height: 30px;
+}
+.form-item i{
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 30px;
+    cursor: pointer;
+    color: #777;
+}
+.form-item i:hover{
+    color: #999;
+}
+.check-tip{
+    font-size: 12px;
+    color: #555;
+}
+.check-tip span{
+    color: green;
+}
+.verify-container input{
+    width: 30%;
+    text-align: center;
+}
+.verify-container img{
+    width: 60%;
+    float: right;
+}
+.screen{
+	display: none;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    z-index: 888;
+}
+
+
+#edui4{
+    background: #000;
+    opacity: 0.6;
+}
+
+.edit{
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    background:#fff;
+    width: 20px;
+    height: 20px;
+    z-index: 9999;
+    border: 0.5px solid #eee;
+    border-radius: 2px;
+}
+.fa-chevron-down{
+    cursor: pointer;
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-left: 2px;
+    color: #777;
+}
+.edit-list{
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 80px;
+    margin-top: -1px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 2px;
+}
+.edit-list li{
+    cursor: pointer;
+    display: block;
+    color: #555;
+    text-indent: 3px;
+    font-size: 13px;
+    line-height: 25px;
+}
+.edit-list li:hover{
+    background: #00B7EE;
+    color: #fff;
+}
+
+/*设置封面的弹出窗样式*/
+#set-cover{
+    /*display: block;*/
+    width: 332px;
+}
+.screen{
+    /*display: block;*/
+}
+.imgs{
+    max-height: 250px;
+    padding-right: 10px;
+    overflow: overlay;
+}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+.imgs::-webkit-scrollbar
+{
+    width: 10px;
+    height: 10px;
+    background-color: #eee;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+.imgs::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #eee;
+}
+
+/*定义滑块 内阴影+圆角*/
+.imgs::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #aaa;
+}
+.form-item .pic{
+    padding: 2px;
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.form-item .current{
+    background: #00B7EE;
+/*    
+    width: 94px;
+    height: 94px;
+    border: 3px solid #00B7EE;*/
+}
+.form-item .pic:nth-child(3n+1){
+    margin-left: 0;
+}
+.form-item .pic img{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    width: 96px;
+    height: 96px;
+}
+#set-cover button{
+    width: 100px;
+    position: absolute;
+    margin-top: -5px;
+    right: 20px;
+    background: #fff;
+    padding: 5px;
+    color: #555;
+    font-size: 13px;
+    border: 1px solid #ccc;
+}
+#set-cover .check-tip span{
+    color: #00B7EE;
+}
+#set-cover button:hover{
+    color: #00B7EE;
+    border-color: #00B7EE;
+}
