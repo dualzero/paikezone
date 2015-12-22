@@ -45,20 +45,36 @@ class UserController extends HomeController {
 
 		/* 检测密码 */
 		if($password != $repassword){
-			$this->error('密码和重复密码不一致！');
-		}			
-
-		/* 调用注册接口注册用户 */
-        $User = new UserApi;
-		$uid = $User->register($username, $password, $email);
-		if(0 < $uid){ //注册成功
-			//TODO: 发送验证邮件
-            //直接登录用户
-            D('User')->login($uid);
-			$this->success('注册成功！正在登录用户..',U('UCenter/index'));
-		} else { //注册失败，显示错误信息
-			$this->error($this->showRegError($uid));
+			$this->error('两次密码输入不一致！');
 		}
+
+        // 判断用户是否存在
+        $User = M('User');
+        $map = array('username' => $username);
+        $count = $User->where($map)->count();
+        if($count) $this->error('用户名已存在');
+
+        // 判断邮箱是否存在
+        $map = array('email' => $email);
+        $count = $User->where($map)->count();
+        if($count) $this->error('邮箱已存在');
+
+        //注册用户信息-保存
+        $data = array(
+            'username' => $username,
+            'password' => $password,
+            'email'    => $email,
+            'reg_time' => NOW_TIME,
+            'reg_ip'   => get_client_ip()
+        );
+
+        if($uid = $User->add($data)){
+            $this->autoLogin($uid);
+            $this->success('注册成功！正在登录用户...', U('UCenter/index'));
+        }else{
+            $this->error('注册失败');
+        }
+
 	}
 
 	/* 登录页面 */
