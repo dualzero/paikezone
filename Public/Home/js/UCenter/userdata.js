@@ -66,7 +66,7 @@ $(function(){
 
             var data = $.parseJSON(data);
             if(data['status'] == 0){
-                $.ThinkBox.error(data['info'],{'delayClose':3000});
+                alert(data.info);
                 return;
             }
             var preview = $('.upload-area').children('#preview-hidden');

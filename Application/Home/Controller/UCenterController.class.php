@@ -57,11 +57,12 @@ class UCenterController extends HomeController{
         $album_list = $Album
             ->alias('a')
             // ->join('__PIC__ p on a.cover_id = p.id','left')
-            ->join('__ALBUM_TYPE__ t on a.tid=t.id')
+            ->join('__ALBUM_TYPE__ t on a.tid=t.id','left')
             ->field(array('a.*','t.name as typename'))
             ->order('update_time desc')
             ->where($map)
             ->select();
+        echo $Album->getLastSql();
         $Pic = M('Pic');
         foreach ($album_list as $key => $val) {
             //获取相册的图片数量
@@ -471,6 +472,7 @@ class UCenterController extends HomeController{
 
     //头像上传处理函数---ajax
     public function uploadImg(){
+        
         $upload = new Upload(C('UPLOAD_CONFIG'));   // 实例化上传类
         //头像目录地址
         $path = './Uploads/Avatar/';
