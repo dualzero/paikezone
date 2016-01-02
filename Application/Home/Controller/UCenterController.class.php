@@ -166,7 +166,7 @@ class UCenterController extends HomeController{
             $Collect->where('pic_id='.$val['id'])->delete();
         }
         // 2.在删除
-        $pic_list = $Pic->where('album_id='.$id)->delete();
+        $Pic->where('album_id='.$id)->delete();
         //删除动态表的相关数据
         $Dynamic->where('album_id='.$id)->delete();
         $this->success('删除成功！');
