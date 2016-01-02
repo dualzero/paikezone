@@ -62,7 +62,7 @@ class UserController extends HomeController {
         //注册用户信息-保存
         $data = array(
             'username' => $username,
-            'password' => $password,
+            'password' => md5($password),
             'email'    => $email,
             'reg_time' => NOW_TIME,
             'reg_ip'   => get_client_ip()
@@ -92,6 +92,7 @@ class UserController extends HomeController {
         $User = M('User');
         $map = array('username'=>$username);
         $user = $User->where($map)->field('uid,password')->find();
+        // select 'id,password' from pkz_user where username = $username;
 
         //判断用户名或者密码的正确性
         if(!$user) $this->error('用户不存在！');

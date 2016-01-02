@@ -39,7 +39,7 @@
         </div>
         <notempty name="album_list">
             <volist name="album_list" id="vo">
-                <div class="list" value="{$vo.id}" url="{:U('detail',array('uid'=>$user['uid'],'album_id'=>$vo['id']))}">
+                <div class="list" value="{$vo['id']}" url="{:U('detail',array('uid'=>$user['uid'],'album_id'=>$vo['id']))}">
                     <if condition="$user_self eq true">
                         <div class="edit">
                             <i class="fa fa-chevron-down"></i>
@@ -88,8 +88,8 @@
                 <option value="0">--请选择--</option>
                 <option value="1">生活</option>
                 <option value="2">人物</option>
-                <option value="3">风景</option>
-                <option value="4">旅游</option>
+                <option value="3">旅游</option>
+                <option value="4">lomo风</option>
                 <option value="5">其他</option>
             </select>
             <span style="display:inline-block;width:10px"></span>权限:

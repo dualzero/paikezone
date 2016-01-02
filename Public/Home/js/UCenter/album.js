@@ -43,8 +43,8 @@ $(function () {
                 },1500);
 			} else {
 				self.find(".check-tip").find('span').css('color','red').text(data.info);
-				//刷新验证码
-				$(".reloadverify").click();
+				// //刷新验证码
+				// $(".reloadverify").click();
 			}
 		}
 	});
