@@ -59,6 +59,7 @@ class IndexController extends HomeController {
             ->where($map)
             ->select();
         $Pic = M('Pic');
+        $Thumb = M('Thumb');
         foreach ($album_list as $key => $val) {
             //获取相册的图片数量
             $map = array();
@@ -73,7 +74,7 @@ class IndexController extends HomeController {
             //获取封面图片的路径 ---  相册封面要足够清晰，这里不使用缩略图
             $map = array();
             $map['id'] = $cover_id;
-            $album_list[$key]['cover'] = $Pic->where($map)->getField('path'); 
+            $album_list[$key]['cover'] = $Thumb->where($map)->getField('path'); 
         }
         $this->assign('album_list',$album_list);
     }

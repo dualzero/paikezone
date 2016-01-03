@@ -1,8 +1,5 @@
 
 $(function(){
-    if(!window.detail){
-        alert(123);
-    }
 
 	//header我的地区默认
 	$('#nav .father').eq(0).css('color','#E54839');
@@ -263,4 +260,25 @@ function changeImg(li){
 	var src=li.find('img').attr('src');
 	li.find('img').attr('src',xsrc);
 	li.find('img').attr('xsrc',src);
+}
+
+function del(_this){
+
+    if(!confirm('删除该图片将会删除与该图片所有相关的信息。确定删除吗？')){
+        return ;
+    }
+
+    var self = $(_this);
+    var info = {pic_id:self.parent().attr('value')};
+    var url = self.attr('url');
+    $.post(url, info, function(data){
+        console.log(data);
+        if(data.status){
+            alert('删除成功');
+        }else{
+            alert('删除失败');
+        }
+        location.reload();
+    });
+
 }

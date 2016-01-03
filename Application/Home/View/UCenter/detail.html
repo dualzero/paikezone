@@ -36,7 +36,10 @@
                             <div class="info">
                                 <p class="time">2015年7月30日</p>
                                 <if condition="$user_self eq true">
-                                    <p class="share" value="{$pic.id}" onclick="window.open('{:U('PicEdit/edit',array('pic_id'=>$pic['id']))}')">编辑</p>
+                                    <p class="share" value="{$pic.id}">
+                                        <span onclick="del(this)" url="{:U('PicEdit/del')}">删除</span>
+                                        <span onclick="window.open('{:U('PicEdit/edit',array('pic_id'=>$pic['id']))}')">编辑</span>
+                                    </p>
                                 <else/>
                                     <if condition="$pic.collect eq 1">
                                         <p class="share collect-add" value="{$pic.id}" style="display:none" url="{:U('collect_add')}">收藏</p>

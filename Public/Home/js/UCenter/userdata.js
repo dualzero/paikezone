@@ -158,8 +158,8 @@ $(function(){
         var uid = $('.uid').val();
         var sex = $('#sex').val();
         var birthday = $('#birthday').val();
-        var qq = $('#qq').val();
-        var info = {uid:uid,sex:sex,birthday:birthday,qq:qq};
+        var sign = $('#sign').val();
+        var info = {uid:uid,sex:sex,birthday:birthday,sign:sign};
         $.post(url,info,function(data){
             console.log(data);
             if(data.status == 1){

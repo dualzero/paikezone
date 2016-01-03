@@ -27,7 +27,7 @@ function time_format($time = NULL,$format='Y-m-d H:i'){
  * @param unknown_type $cut 是否切割 默认不切割
  * @return string
  */
-function getThumbImage($filename, $width = 100, $height = 'auto',$cut=true, $replace = false)
+function getThumbImage($filename, $width = 150, $height = 'auto',$cut=true, $replace = false)
 {
     define('UPLOAD_URL', '');
     define('UPLOAD_PATH', '');
@@ -106,7 +106,7 @@ function getThumbImage($filename, $width = 100, $height = 'auto',$cut=true, $rep
 }
 
 
-function get_sc($pic_path, $width = 100, $height = 100, $cut = true, $replace = false){
+function get_sc($pic_path, $width = 150, $height = 150, $cut = true, $replace = false){
     $attach = getThumbImage($pic_path, $width, $height, $cut, $replace);
     return $attach['src'];
 }

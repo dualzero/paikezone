@@ -62,8 +62,8 @@ class UCenterController extends HomeController{
             ->order('update_time desc')
             ->where($map)
             ->select();
-        echo $Album->getLastSql();
         $Pic = M('Pic');
+        $Thumb = M('Thumb');
         foreach ($album_list as $key => $val) {
             //获取相册的图片数量
             $map = array();
@@ -78,7 +78,8 @@ class UCenterController extends HomeController{
             //获取封面图片的路径 ---  相册封面要足够清晰，这里不使用缩略图
             $map = array();
             $map['id'] = $cover_id;
-            $album_list[$key]['cover'] = $Pic->where($map)->getField('path'); 
+            //注意：因为原图会压缩--所以这里使用缩略图设置为封面
+            $album_list[$key]['cover'] = $Thumb->where($map)->getField('path'); 
             //获取相册的评论数
             // 
             //  评论功能暂未实现
@@ -256,6 +257,7 @@ class UCenterController extends HomeController{
     //相册详情
     public function detail($album_id=''){
         $Pic =M('Pic');
+        $Thumb = M('Thumb');
         //获取相册的id
         $album_id = I('album_id');
         /**
@@ -271,7 +273,7 @@ class UCenterController extends HomeController{
             $cover_id = $album['cover_id'];
         }
         $map['id'] = $cover_id;
-        $album['cover'] = $Pic->where($map)->getField('path'); 
+        $album['cover'] = $Thumb->where($map)->getField('path'); 
         $this->assign('album', $album);
 
         /**
@@ -281,7 +283,6 @@ class UCenterController extends HomeController{
         $map['album_id'] = $album_id;
         //获取相册的所有图片和缩略的
         $Pic = M('Pic');
-        $Thumb = M('Thumb');
         $pic_list = $Pic
             ->alias('p')
             ->join('__THUMB__ t on p.id=t.pic_id')
@@ -327,10 +328,10 @@ class UCenterController extends HomeController{
             }else{
                 $cover_id = $val['cover_id'];
             }
-            //获取封面图片的路径 ---  相册封面要足够清晰，这里不使用缩略图
+            //获取封面图片的路径 ---  原图会压缩成正方形，所以这里使用缩略图
             $map = array();
             $map['id'] = $cover_id;
-            $album_list[$key]['cover'] = $Pic->where($map)->getField('path'); 
+            $album_list[$key]['cover'] = $Thumb->where($map)->getField('path'); 
         }
         $this->assign('album_list',$album_list);
         $this->display();
@@ -530,7 +531,7 @@ class UCenterController extends HomeController{
         I('uid') && $data['uid'] = I('uid');
         I('sex') && $data['sex'] = I('sex');
         I('birthday') && $data['birthday'] = I('birthday');
-        I('qq') && $data['qq'] = I('qq');
+        I('sign') && $data['sign'] = I('sign');
         //保存信息
         M('User')->save($data);
         $this->success('保存成功');
