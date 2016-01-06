@@ -168,4 +168,22 @@ $(function(){
             }
         },'json');
     });
+
+    $('.change-btn').click(function(){
+        var url = $(this).attr('url');
+        var uid = $('.uid').val();
+        var old_psd = $('#old_psd').val(); //旧密码
+        var new_psd = $('#new_psd').val(); //新密码
+        var re_psd = $('#re_psd').val();   //重复密码
+        var info = {uid:uid,old_psd:old_psd,new_psd:new_psd,re_psd:re_psd};
+        $.post(url,info,function(data){
+            console.log(data);
+            if(data.status == 1){
+                alert('修改成功，请重新登录系统');
+                location = data.url;
+            }else{
+                alert(data.info);
+            }
+        },'json');
+    });
 });

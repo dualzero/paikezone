@@ -536,4 +536,33 @@ class UCenterController extends HomeController{
         M('User')->save($data);
         $this->success('保存成功');
     }
+
+    public function changePsd(){
+        $data = array();
+        //判断参数是否为空
+        I('old_psd') || $this->error('旧密码不能为空！');
+        I('new_psd') || $this->error('新密码不能为空！');
+        I('re_psd') || $this->error('重复密码不能为空！');
+        //获取传过来的参数
+        $uid = I('uid');
+        $old_psd = I('old_psd');
+        $new_psd = I('new_psd');
+        $re_psd = I('re_psd');
+        //判断新密码和重复密码是否一直
+        if($new_psd != $re_psd){
+            $this->error('新密码和重复密码不一致');
+        }
+        //判断输入密码是否正确
+        $user = M('User')->find($uid);
+        if($user['password'] != md5($old_psd)){
+            $this->error('旧密码错误');
+        }
+        //保存密码
+        $map = array('uid'=>$uid);
+        if(M('User')->where($map)->setField('password', md5($new_psd))){
+            $this->success('修改成功', U('User/logout'));
+        }else{
+            $this->error('修改失败！');
+        }
+    }
 }

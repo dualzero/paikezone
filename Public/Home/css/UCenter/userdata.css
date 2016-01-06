@@ -280,7 +280,8 @@ select{
     padding: 3px 5px;
     text-align: center;
 }
-.save-btn{
+.save-btn,
+.change-btn{
     display: inline-block;
     padding: 5px 25px;
     font-size: 14px;
@@ -290,7 +291,8 @@ select{
     text-decoration: none;
     margin-left: 20px;
 }
-.save-btn:hover{
+.save-btn:hover,
+.change-btn:hover{
     color: #333;
     border-color: #999;
 }

@@ -86,7 +86,7 @@
                 <div>
                     <label for="sign">个性签名</label>
                     <span>
-                        <input id="sign" type="sign" value="{$user.sign}">
+                        <input id="sign" type="text" value="{$user.sign}">
                     </span>
                 </div>
                 <div>
@@ -105,6 +105,31 @@
         <div class="login_time">
             <label for="login_time">最近登录</label> <span>{$user.last_login_time|time_format}</span>
         </div>
+        <if condition="$user_self eq true">
+            <h2>修改密码</h2>
+            <div>
+                <label for="old_psd">旧密码</label>
+                <span>
+                    <input id="old_psd" type="password" name="old_psd">
+                </span>
+            </div>
+            <div>
+                <label for="new_psd">新密码</label>
+                <span>
+                    <input id="new_psd" type="password" name="new_psd">
+                </span>
+            </div>
+            <div>
+                <label for="re_psd">重复密码</label>
+                <span>
+                    <input id="re_psd" type="password" name="re_psd">
+                </span>
+            </div>
+            <div>
+                <input class="uid" type="hidden" value="{$user.uid}">
+                <a class="change-btn" url="{:U('changePsd')}" href="javascript:void(0);">修改</a>
+            </div>
+        </if>
     </div>
 </div>
 <div class="main dialog">
